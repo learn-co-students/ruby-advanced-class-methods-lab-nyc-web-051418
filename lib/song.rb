@@ -19,7 +19,7 @@ class Song
     self.class.all << self
   end
 
-  def self.new_by_name(name)
+  def self.new_by_name(name) #this one should not come from create to avoid saving
     song = create
     # song = self.create
     song.name = name
@@ -48,8 +48,8 @@ class Song
   end
 
   def self.new_from_filename(song_mp3)
-    song_name = song_mp3.split(" - ")[1].split(".")[0]
-    artist_name = song_mp3.split(" - ")[0]
+    song_name = song_mp3.split(' - ')[1].split('.')[0]
+    artist_name = song_mp3.split(' - ')[0]
     song = create_by_name(song_name)
     song.artist_name = artist_name
     song
