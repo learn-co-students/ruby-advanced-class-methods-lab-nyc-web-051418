@@ -13,7 +13,7 @@ class Song
   end
 
   def self.create
-     song = Song.new
+     song = self.new
      song.save
      song
   end
@@ -49,13 +49,29 @@ class Song
 
   def self.new_from_filename (filename)
       artist_and_song = filename.chomp('.mp3')
-      song_name = artist_and_song.split('-')[0].strip
-      artist_name = artist_and_song.split('-')[1].strip
+      song_name = artist_and_song.split('-')[1].strip
+      artist_name = artist_and_song.split('-')[0].strip
 
       song = self.new
       song.name = song_name
-      song.artist = artist_name
+      song.artist_name = artist_name
       song
   end
+
+  def self.create_from_filename (filename)
+    artist_and_song = filename.chomp('.mp3')
+    song_name = artist_and_song.split('-')[1].strip
+    artist_name = artist_and_song.split('-')[0].strip
+
+    song = self.create
+    song.name = song_name
+    song.artist_name = artist_name
+    song
+  end
+
+  def self.destroy_all
+    @@all.clear
+  end  
+
 
 end
